@@ -1,17 +1,17 @@
 import { test, expect } from '@playwright/test';
+import { Role } from '../pages/role';
+import { LoginPage } from '../pages/login-page';
+import { RecordBookGoalsPage } from '../pages/record-book-goals-page';
 
 test('Record book and goals/target', async ({ page }) => {
   await page.goto('https://global-prestg.renaissance-golabs.com/welcomeportal/prestgourots1');
+  
+  const loginPage = new LoginPage(page);
+  await loginPage.selectRole(Role.Student);
+  await loginPage.login('oadmin1', 'Pass123$456')
 
-  await page.click("text=I'm a Student");
-  await page.fill('input[id="Username"]', 'oadmin1');
-  await page.fill('input[id="Password"]', 'Pass123$456');
-  await page.click('id=btnLogIn');
-
-  await page.click('[data-component="Independent Reading"]')
-  await page.click('[data-component="Record Book & Goals"]')
-
-  await page.waitForSelector('app-class-tabs')
+  const recordBookPage = new RecordBookGoalsPage(page);
+  await recordBookPage.navigateToRecordBookAndGoals();
 
   //matches screenshot saved under snapshots
   await expect(page).toHaveScreenshot('RecordBookGoals.png');
