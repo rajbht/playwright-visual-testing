@@ -23,7 +23,8 @@ https://playwright.dev/docs/test-cli
     $ npx playwright test preference-portal.spec.ts --headed    
     
 
-### Things to remember
+### Things to know
 
 1. When the test runs for the first time, and there is no snapshot, PW will generate the snapshot (by default or you could give it a name) for every browser and OS.
 2. Screenshot match would fail based on the viewport of the snapshot and the application.
+3. Browser rendering would be different for different screen resolution and size (desktop vs laptop)
