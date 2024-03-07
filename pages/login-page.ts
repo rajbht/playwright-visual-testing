@@ -1,5 +1,5 @@
 import { expect, Locator, Page } from '@playwright/test';
-import { Role } from '../pages/role';
+import { Role } from './role';
 
 export class LoginPage {
   readonly page: Page;
@@ -22,7 +22,7 @@ export class LoginPage {
   }
 
   async goto() {
-    await this.page.goto('https://global-prestg.renaissance-golabs.com/welcomeportal/prestgourots1');
+    await this.page.goto('https://global-test.renaissance.com/welcomeportal');
   }
 
   async selectRole(role: Role) {
